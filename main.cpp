@@ -18,9 +18,8 @@ string game[3][3] =
     {" "," "," "}
 };
 
-void wait(){
-    cout << "type anything to continue! or q to quit:" << endl;
-    string anything;
+void wait(string& anything){
+    cout << "type anything to continue/play again another round! or q to quit" << endl;
     cin >> anything;
 }
 
@@ -81,7 +80,11 @@ bool isdraw(){
 
 void putmarker(string& winner){
     bool player1turn {true};
+    int scoreofx {};
+    int scoreofo {};
+    int numberofdraws {};
     while(!checkwinner(winner)){
+        string anything {};
         if(player1turn){
             cout << "Player 1 (X) choose your slot" << endl;
         }
@@ -115,13 +118,37 @@ void putmarker(string& winner){
                     if(checkwinner(winner)){
                         drawboard();
                         cout << winner << " WON!!!!!" << endl;
-                        wait();
-                        break;
+                        if(winner == "X"){
+                            scoreofx++;
+                        }
+                        else{
+                            scoreofo++;
+                        }
+                        cout << "SCORES: " << endl;
+                        cout << "X: " << scoreofx << endl;
+                        cout << "O: " << scoreofo << endl;
+                        wait(anything);
+                        if(anything == "q"){
+                            break;
+                        }
+                        else{
+                            resetboard();
+                            continue;
+                        }
                     }
                     else{
                         if(isdraw()){
                             cout << "It's a draw!" << endl;
-                            break;
+                            numberofdraws++;
+                            cout << "Draws:" << numberofdraws << endl;
+                            wait(anything);
+                            if(anything=="q"){
+                                break;
+                            }
+                            else{
+                                resetboard();
+                                continue;
+                            }
                         }
                     }
                     player1turn = !player1turn;
@@ -154,7 +181,7 @@ int main(){
             }
             else{
                 cout << "Invalid Input!" << endl;
-                wait();
+                wait(anything);
                 if(anything == "q"){
                     break;
                 }
