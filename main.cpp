@@ -18,8 +18,9 @@ string game[3][3] =
     {" "," "," "}
 };
 
-void wait(string& anything){
+void wait(){
     cout << "type anything to continue! or q to quit:" << endl;
+    string anything;
     cin >> anything;
 }
 
@@ -45,33 +46,29 @@ void resetboard(){
     }
 }
 
-int checkwinner(string& winner, bool& foundwinner){
+bool checkwinner(string& winner){
     for(int i=0;i<3;i++){
         if(game[i][0] == game[i][1] && game[i][1] == game[i][2] && game[i][0] != " "){
             winner = game[i][0];
-            foundwinner = true;
-            return 1;
+            return true;
         }
         else if(game[0][i] == game[1][i] && game[1][i] == game[2][i] && game[0][i] != " "){
             winner = game[0][i];
-            foundwinner = true;
-            return 1;
+            return true;
         }
     }
     if(game[0][0] == game[1][1] && game[1][1] == game[2][2] && game[0][0] != " "){
         winner = game[0][0];
-        foundwinner = true;
-        return 1;
+        return true;
     }
     else if(game[0][2] == game[1][1] && game[1][1] == game[2][0] && game[0][2] != " "){
         winner = game[0][2];
-        foundwinner = true;
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
-bool draw(){
+bool isdraw(){
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
             if(game[i][j]==" "){
@@ -82,9 +79,9 @@ bool draw(){
     return true;
 }
 
-void putmarker(string& winner, bool& foundwinner){
+void putmarker(string& winner){
     bool player1turn {true};
-    while(!foundwinner){
+    while(!checkwinner(winner)){
         if(player1turn){
             cout << "Player 1 (X) choose your slot" << endl;
         }
@@ -115,12 +112,14 @@ void putmarker(string& winner, bool& foundwinner){
                         game[row][column] = "O";
                     }
                     drawboard();
-                    if(checkwinner(winner, foundwinner) == 1){
+                    if(checkwinner(winner)){
+                        drawboard();
                         cout << winner << " WON!!!!!" << endl;
+                        wait();
                         break;
                     }
                     else{
-                        if(draw()){
+                        if(isdraw()){
                             cout << "It's a draw!" << endl;
                             break;
                         }
@@ -135,7 +134,6 @@ void putmarker(string& winner, bool& foundwinner){
 int main(){
     string winner;
     string anything;
-    bool foundwinner { false };
     while(true){
         menu();
         cout << "Input:" << endl;
@@ -147,9 +145,8 @@ int main(){
         else{
             if(userinput == 1){
                 drawboard();
-                putmarker(winner,foundwinner);
+                putmarker(winner);
                 resetboard();
-                foundwinner = false;
                 winner = " ";
             }
             else if(userinput == 2){
@@ -157,7 +154,10 @@ int main(){
             }
             else{
                 cout << "Invalid Input!" << endl;
-                wait(anything);
+                wait();
+                if(anything == "q"){
+                    break;
+                }
             }
         }
     }
