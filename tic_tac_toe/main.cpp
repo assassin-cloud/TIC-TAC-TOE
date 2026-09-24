@@ -21,7 +21,13 @@ int main(){
             }
             else if(userinput == 2){
                 optionsmenu();
-                optioninput = takeinputfromuser();
+                int optioninput { takeinputfromuser() };
+                if(optioninput ==1 && firstoption == false){
+                    firstoption = true;
+                }
+                else if(optioninput == 1 && firstoption){
+                    firstoption = false;
+                }
                 resetboard();
             }
             else if(userinput == 3){
