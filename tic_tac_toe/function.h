@@ -2,7 +2,7 @@
 #include <string>
 
 extern std::string game[3][3];
-extern int optioninput;
+extern bool firstoption;
 
 // Backbone of program flow
 void menu();
