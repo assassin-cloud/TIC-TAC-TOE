@@ -19,7 +19,6 @@ void optionsmenu(){
     cout << "==============" << endl;
     cout << "1. Show slot numbers on board(default:disabled)" << endl;
     cout << endl;
-    cout << "Minor issue: option(1) will reset to default after a round has ended!(will be fixed shortly)" << endl;
     cout << "Input:" << endl;
 }
 
