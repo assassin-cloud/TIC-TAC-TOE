@@ -20,7 +20,7 @@ string game[3][3] =
 };
 
 void wait(string& anything){
-    cout << "type anything to continue/play again another round! or q to quit" << endl;
+    cout << "Type anything to play another round! or q to quit" << endl;
     cin >> anything;
 }
 
