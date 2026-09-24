@@ -9,7 +9,24 @@ void menu(){
     cout << "==================" << endl;
     cout << endl;
     cout << "1. PLay" << endl;
-    cout << "2. Exit" << endl;
+    cout << "2. Options" << endl;
+    cout << "3. Exit" << endl;
+}
+
+void optionsmenu(){
+    cout << "==============" << endl;
+    cout << "   OPTIONS    " << endl;
+    cout << "==============" << endl;
+    cout << "1. Show slot numbers on board(default:disabled)" << endl;
+    cout << endl;
+    cout << "Minor issue: option(1) will reset to default after a round has ended!(will be fixed shortly)" << endl;
+    cout << "Input:" << endl;
+}
+
+int takeinputfromuser(){
+    int x {};
+    cin >> x;
+    return x;
 }
 
 string game[3][3] =
@@ -20,7 +37,7 @@ string game[3][3] =
 };
 
 void wait(string& anything){
-    cout << "Type anything to play another round! or q to quit" << endl;
+    cout << "Type anything to play another round! or (q) to quit:" << endl;
     cin >> anything;
 }
 
@@ -71,7 +88,8 @@ bool checkwinner(string& winner){
 bool isdraw(){
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
-            if(game[i][j]==" "){
+            int slotnumber = (i*3)+j+1;
+            if(game[i][j] == " " || game[i][j] == to_string(slotnumber)){
                 return false;
             }
         }
@@ -87,10 +105,10 @@ void putmarker(string& winner){
     while(!checkwinner(winner)){
         string anything {};
         if(player1turn){
-            cout << "Player 1 (X) choose your slot" << endl;
+            cout << "Player 1 (X) type your slot number:" << endl;
         }
         else{
-            cout << "Player 2 (O) choose your slot" << endl;
+            cout << "Player 2 (O) type your slot number:" << endl;
         }
         int slot {};
         cin >> slot;
@@ -126,8 +144,8 @@ void putmarker(string& winner){
                             scoreofo++;
                         }
                         cout << "SCORES: " << endl;
-                        cout << "X: " << scoreofx << endl;
-                        cout << "O: " << scoreofo << endl;
+                        cout << "(X): " << scoreofx << endl;
+                        cout << "(O): " << scoreofo << endl;
                         wait(anything);
                         if(anything == "q"){
                             break;
@@ -141,9 +159,9 @@ void putmarker(string& winner){
                         if(isdraw()){
                             cout << "It's a draw!" << endl;
                             numberofdraws++;
-                            cout << "Draws:" << numberofdraws << endl;
+                            cout << "NUmber of Draws:" << numberofdraws << endl;
                             wait(anything);
-                            if(anything=="q"){
+                            if(anything == "q"){
                                 break;
                             }
                             else{
