@@ -13,11 +13,14 @@ void menu(){
     cout << "3. Exit" << endl;
 }
 
+
 void optionsmenu(){
     cout << "==============" << endl;
     cout << "   OPTIONS    " << endl;
     cout << "==============" << endl;
-    cout << "1. Show slot numbers on board(default:disabled)" << endl;
+    cout << "(0) means Disabled and (1) means Enabled" << endl;
+    cout << endl;
+    cout << "1. Show slot numbers on board(default:disabled): " << firstoption << endl;
     cout << endl;
     cout << "Input:" << endl;
 }
@@ -28,7 +31,7 @@ int takeinputfromuser(){
     return x;
 }
 
-int optioninput {};
+bool firstoption {false};
 string game[3][3] =
 {
     {" "," "," "},
@@ -56,7 +59,7 @@ void drawboard(){
 }
 
 void resetboard(){
-    if(optioninput==1){
+    if(firstoption){
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
                 int slotnumber = (i*3)+j+1;
