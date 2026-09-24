@@ -24,6 +24,9 @@ int main(){
                 optioninput = takeinputfromuser();
                 resetboard();
             }
+            else if(userinput == 3){
+                break;
+            }
             else{
                 cout << "Invalid Input!" << endl;
             }
