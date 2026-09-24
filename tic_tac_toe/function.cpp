@@ -29,6 +29,7 @@ int takeinputfromuser(){
     return x;
 }
 
+int optioninput {};
 string game[3][3] =
 {
     {" "," "," "},
@@ -56,10 +57,20 @@ void drawboard(){
 }
 
 void resetboard(){
-    for(int i=0;i<3;i++){
-        for(int j=0;j<3;j++){
-            game[i][j] = " ";
+    if(optioninput==1){
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                int slotnumber = (i*3)+j+1;
+                game[i][j] = to_string(slotnumber);
+            }
         }
+    }
+    else{
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                game[i][j] = " ";
+            }
+        } 
     }
 }
 
