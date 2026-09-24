@@ -5,7 +5,6 @@ using namespace std;
 
 int main(){
     string winner;
-    string anything;
     while(true){
         menu();
         cout << "Input:" << endl;
@@ -26,10 +25,6 @@ int main(){
             }
             else{
                 cout << "Invalid Input!" << endl;
-                wait(anything);
-                if(anything == "q"){
-                    break;
-                }
             }
         }
     }
