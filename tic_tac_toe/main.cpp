@@ -20,18 +20,25 @@ int main(){
                 winner = " ";
             }
             else if(userinput == 2){
-                optionsmenu();
-                int optioninput { takeinputfromuser() };
-                if(optioninput == 1 && firstoption == false){
-                    firstoption = true;
+                while(true){
+                    optionsmenu();
+                    int optioninput { takeinputfromuser() };
+                    if(cin.fail()){
+                        cinfail();
+                    }
+                    else{
+                        if(optioninput == 1 && firstoption == false){
+                            firstoption = true;
+                        }
+                        else if(optioninput == 1 && firstoption){
+                            firstoption = false;
+                        }
+                        else if(optioninput == 2){
+                            break;
+                        }
+                        resetboard();
+                    }
                 }
-                else if(optioninput == 1 && firstoption){
-                    firstoption = false;
-                }
-                else if(optioninput == 2){
-                    break;
-                }
-                resetboard();
             }
             else if(userinput == 3){
                 break;
