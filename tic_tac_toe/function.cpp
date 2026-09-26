@@ -21,6 +21,7 @@ void optionsmenu(){
     cout << "(0) means Disabled and (1) means Enabled" << endl;
     cout << endl;
     cout << "1. Show slot numbers on board(default:disabled): " << firstoption << endl;
+    cout << "2. Exit" << endl;
     cout << endl;
     cout << "Input:" << endl;
 }
