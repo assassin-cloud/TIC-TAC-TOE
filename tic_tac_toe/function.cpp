@@ -7,6 +7,7 @@ void menu(){
     cout << "==================" << endl;
     cout << "   TIC TAC TOE    " << endl;
     cout << "==================" << endl;
+    cout << "Note: Type 404 in a ongoing round to exit" << endl;
     cout << endl;
     cout << "1. PLay" << endl;
     cout << "2. Options" << endl;
@@ -141,8 +142,11 @@ void putmarker(string& winner){
             cinfail();
         }
         else{
-            if(slot<1 || slot>9){
+            if((slot<1 || slot>9) && slot != 404){
                 cout << "Invalid Input!" << endl;
+            }
+            else if(slot == 404){
+                break;
             }
             else{
                 slot--;
