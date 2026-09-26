@@ -26,6 +26,16 @@ void optionsmenu(){
     cout << "Input:" << endl;
 }
 
+void scoreboard(int round, int scoreofx, int scoreofo, int numberofdraws){
+    cout << "| " << "ROUND NUMBER: " << round << " |" << endl;
+    cout << "| --------------- |" << endl;
+    cout << "| " << "SCORE(X): " << scoreofx << "     |" << endl;
+    cout << "| --------------- |" << endl;
+    cout << "| " << "SCORE(O): " << scoreofo << "     |" << endl;
+    cout << "| --------------- |" << endl;
+    cout << "| " << "DRAWS: " << numberofdraws << "        |" << endl;
+}
+
 int takeinputfromuser(){
     int x {};
     cin >> x;
@@ -113,6 +123,7 @@ bool isdraw(){
 
 void putmarker(string& winner){
     bool player1turn {true};
+    int round {};
     int scoreofx {};
     int scoreofo {};
     int numberofdraws {};
@@ -157,9 +168,8 @@ void putmarker(string& winner){
                         else{
                             scoreofo++;
                         }
-                        cout << "SCORES: " << endl;
-                        cout << "(X): " << scoreofx << endl;
-                        cout << "(O): " << scoreofo << endl;
+                        round++;
+                        scoreboard(round, scoreofx, scoreofo, numberofdraws);
                         wait(anything);
                         if(anything == "q"){
                             break;
@@ -173,7 +183,7 @@ void putmarker(string& winner){
                         if(isdraw()){
                             cout << "It's a draw!" << endl;
                             numberofdraws++;
-                            cout << "NUmber of Draws:" << numberofdraws << endl;
+                            scoreboard(round, scoreofx, scoreofo, numberofdraws);
                             wait(anything);
                             if(anything == "q"){
                                 break;
