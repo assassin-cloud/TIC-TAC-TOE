@@ -57,6 +57,43 @@ int main(){
                             }
                         }
                         else if(optioninput == 3){
+                            while(true){
+                                changeplayersname();
+                                int thirdoptioninput { takeinputfromuser() };
+                                if(cin.fail()){
+                                    cinfail();
+                                }
+                                else{
+                                    if(thirdoptioninput == 1){
+                                        playeronename = inputforchangename();
+                                    }
+                                    else if(thirdoptioninput == 2){
+                                        playertwoname = inputforchangename();
+                                    }
+                                    else if(thirdoptioninput == 3){
+                                        changenametodefault();
+                                        int defaultmenuinput { takeinputfromuser() };
+                                        if(defaultmenuinput == 1){
+                                            playeronename = "PLAYER 1";
+                                            playertwoname = "PLAYER 2";
+                                        }
+                                        else if(defaultmenuinput == 2){
+                                            playeronename = "PLAYER 1";
+                                        }
+                                        else if(defaultmenuinput == 3){
+                                            playertwoname = "PLAYER 2";
+                                        }
+                                        else{
+                                            cout << "Invalid input!" << endl;
+                                        }
+                                    }
+                                    else if(thirdoptioninput == 4){
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else if(optioninput == 4){
                             break;
                         }
                         resetboard();
