@@ -4,9 +4,7 @@
 using namespace std;
 
 int main(){
-    string winner;
-    string newname {};
-    string oldname {};
+    string winner {};
     while(true){
         menu();
         cout << "Input:" << endl;
@@ -90,22 +88,18 @@ int main(){
                                 }
                                 else{
                                     if(thirdoptioninput == 1){
-                                        oldname = playeronename;
-                                        newname = inputforchangename();
+                                        string newname {inputforchangename()};
                                         if(newname.empty()){
                                             cout << "Empty name not allowed" << endl;
-                                            playeronename = oldname;
                                         }
                                         else{
                                             playeronename = newname;
                                         }
                                     }
                                     else if(thirdoptioninput == 2){
-                                        oldname = playertwoname;
-                                        newname = inputforchangename();
+                                        string newname {inputforchangename()};
                                         if(newname.empty()){
                                             cout << "Empty name not allowed" << endl;
-                                            playertwoname = oldname;
                                         }
                                         else{
                                             playertwoname = newname;
