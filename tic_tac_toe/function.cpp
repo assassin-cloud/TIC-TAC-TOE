@@ -193,7 +193,7 @@ bool isdraw(){
 
 void putmarker(string& winner){
     bool player1turn {true};
-    while(winner == " "){
+    while(!checkwinner(winner)){
         string anything {};
         if(player1turn){
             cout << playeronename << " (X) type your slot number:" << endl;
@@ -244,7 +244,6 @@ void putmarker(string& winner){
                             break;
                         }
                         else{
-                            winner = " ";
                             resetboard();
                             continue;
                         }
@@ -260,7 +259,6 @@ void putmarker(string& winner){
                                 break;
                             }
                             else{
-                                winner = " ";
                                 resetboard();
                                 continue;
                             }
