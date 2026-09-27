@@ -7,6 +7,11 @@ bool firstoption {false};
 int exitnumber {404};
 string playeronename {"PLAYER 1"};
 string playertwoname {"PLAYER 2"};
+int round {};
+int scoreofx {};
+int scoreofo {};
+int numberofdraws {};
+
 void menu(){
     cout << "==================" << endl;
     cout << "   TIC TAC TOE    " << endl;
@@ -14,8 +19,9 @@ void menu(){
     cout << "Note: Type " << exitnumber << " in a ongoing round to exit" << endl;
     cout << endl;
     cout << "1. PLay" << endl;
-    cout << "2. Options" << endl;
-    cout << "3. Exit" << endl;
+    cout << "2. See Scoreboard" << endl;
+    cout << "3. Options" << endl;
+    cout << "4. Exit" << endl;
 }
 
 void optionsmenu(){
@@ -88,6 +94,17 @@ void scoreboard(int round, int scoreofx, int scoreofo, int numberofdraws){
     cout << "| " << "SCORE(O): " << scoreofo << "     |" << endl;
     cout << "| --------------- |" << endl;
     cout << "| " << "DRAWS: " << numberofdraws << "        |" << endl;
+}
+
+void displayscore(){
+    cout << "=================" << endl;
+    cout << "   SCOREBOARD    " << endl;
+    cout << "=================" << endl;
+    cout << endl;
+    scoreboard(round, scoreofx, scoreofo, numberofdraws);
+    cout << "1. Reset Scores and rounds" << endl;
+    cout << "2. Go back" << endl;
+    cout << "INPUT:" << endl;
 }
 
 int takeinputfromuser(){
@@ -176,10 +193,6 @@ bool isdraw(){
 
 void putmarker(string& winner){
     bool player1turn {true};
-    int round {};
-    int scoreofx {};
-    int scoreofo {};
-    int numberofdraws {};
     while(!checkwinner(winner)){
         string anything {};
         if(player1turn){
@@ -239,6 +252,7 @@ void putmarker(string& winner){
                         if(isdraw()){
                             cout << "It's a draw!" << endl;
                             numberofdraws++;
+                            round++;
                             scoreboard(round, scoreofx, scoreofo, numberofdraws);
                             wait(anything);
                             if(anything == "q"){
