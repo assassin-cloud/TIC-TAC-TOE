@@ -34,6 +34,29 @@ int main(){
                             firstoption = false;
                         }
                         else if(optioninput == 2){
+                            while(true){
+                                customexitnumbermenu();
+                                int secondoptioninput { takeinputfromuser()} ;
+                                if(cin.fail()){
+                                    cinfail();
+                                }
+                                else{
+                                    if(secondoptioninput == 0){
+                                        break;
+                                    }
+                                    else if(secondoptioninput == 1){
+                                        exitnumber = 404;
+                                    }
+                                    else if(secondoptioninput <= 9 && secondoptioninput != 0 && secondoptioninput != 1){
+                                        cout << "Invalid Input!" << endl;
+                                    }
+                                    else{
+                                        exitnumber = secondoptioninput;
+                                    }
+                                }
+                            }
+                        }
+                        else if(optioninput == 3){
                             break;
                         }
                         resetboard();
