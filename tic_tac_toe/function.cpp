@@ -3,27 +3,44 @@
 #include<string>
 using namespace std;
 
+bool firstoption {false};
+int exitnumber {404};
 void menu(){
     cout << "==================" << endl;
     cout << "   TIC TAC TOE    " << endl;
     cout << "==================" << endl;
-    cout << "Note: Type 404 in a ongoing round to exit" << endl;
+    cout << "Note: Type " << exitnumber << " in a ongoing round to exit" << endl;
     cout << endl;
     cout << "1. PLay" << endl;
     cout << "2. Options" << endl;
     cout << "3. Exit" << endl;
 }
 
-
 void optionsmenu(){
     cout << "==============" << endl;
     cout << "   OPTIONS    " << endl;
     cout << "==============" << endl;
-    cout << "(0) means Disabled and (1) means Enabled" << endl;
+    cout << "Note: (0) means Disabled and (1) means Enabled" << endl;
     cout << endl;
     cout << "1. Show slot numbers on board(default:disabled): " << firstoption << endl;
-    cout << "2. Exit" << endl;
+    cout << "2. Add Custom Exit Number: " << exitnumber << endl;
+    cout << "3. Exit" << endl;
     cout << endl;
+    cout << "Input:" << endl;
+}
+
+void customexitnumbermenu(){
+    cout << "===============================" << endl;
+    cout << "   INPUT A CUSTOM EXIT CODE    " << endl;
+    cout << "===============================" << endl;
+    cout << endl;
+    cout << "NOTE:" << endl;
+    cout << "1. Code should be greater than 9, can't be negative or zero" << endl;
+    cout << "2. No special characters or alphabets only 'numbers' allowed" << endl;
+    cout << "3. Type 0 to go back to options menu" << endl;
+    cout << "4. Type 1 to reset back to default code" << endl;
+    cout << endl;
+    cout << "Custom Exit Code: " << exitnumber << endl;
     cout << "Input:" << endl;
 }
 
@@ -43,7 +60,6 @@ int takeinputfromuser(){
     return x;
 }
 
-bool firstoption {false};
 string game[3][3] =
 {
     {" "," "," "},
@@ -142,10 +158,10 @@ void putmarker(string& winner){
             cinfail();
         }
         else{
-            if((slot<1 || slot>9) && slot != 404){
+            if((slot<1 || slot>9) && slot != exitnumber){
                 cout << "Invalid Input!" << endl;
             }
-            else if(slot == 404){
+            else if(slot == exitnumber){
                 break;
             }
             else{
