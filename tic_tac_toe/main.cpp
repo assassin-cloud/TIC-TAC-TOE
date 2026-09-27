@@ -5,6 +5,8 @@ using namespace std;
 
 int main(){
     string winner;
+    string newname {};
+    string oldname {};
     while(true){
         menu();
         cout << "Input:" << endl;
@@ -20,6 +22,29 @@ int main(){
                 winner = " ";
             }
             else if(userinput == 2){
+                while(true){
+                    displayscore();
+                    int scoreboardmenuinput { takeinputfromuser() };
+                    if(cin.fail()){
+                        cinfail();
+                    }
+                    else{
+                        if(scoreboardmenuinput == 1){
+                            round = 0;
+                            scoreofx = 0;
+                            scoreofo = 0;
+                            numberofdraws = 0;
+                        }
+                        else if(scoreboardmenuinput == 2){
+                            break;
+                        }
+                        else{
+                            cout << "Invalid Input!" << endl;
+                        }
+                    }
+                }
+            }
+            else if(userinput == 3){
                 while(true){
                     optionsmenu();
                     int optioninput { takeinputfromuser() };
@@ -65,10 +90,26 @@ int main(){
                                 }
                                 else{
                                     if(thirdoptioninput == 1){
-                                        playeronename = inputforchangename();
+                                        oldname = playeronename;
+                                        newname = inputforchangename();
+                                        if(newname.empty()){
+                                            cout << "Empty name not allowed" << endl;
+                                            playeronename = oldname;
+                                        }
+                                        else{
+                                            playeronename = newname;
+                                        }
                                     }
                                     else if(thirdoptioninput == 2){
-                                        playertwoname = inputforchangename();
+                                        oldname = playertwoname;
+                                        newname = inputforchangename();
+                                        if(newname.empty()){
+                                            cout << "Empty name not allowed" << endl;
+                                            playertwoname = oldname;
+                                        }
+                                        else{
+                                            playertwoname = newname;
+                                        }
                                     }
                                     else if(thirdoptioninput == 3){
                                         changenametodefault();
@@ -90,17 +131,23 @@ int main(){
                                     else if(thirdoptioninput == 4){
                                         break;
                                     }
+                                    else{
+                                        cout << "Invalid Input!" << endl;
+                                    }
                                 }
                             }
                         }
                         else if(optioninput == 4){
                             break;
                         }
+                        else{
+                            cout << "Invalid Input!" << endl;
+                        }
                         resetboard();
                     }
                 }
             }
-            else if(userinput == 3){
+            else if(userinput == 4){
                 break;
             }
             else{
