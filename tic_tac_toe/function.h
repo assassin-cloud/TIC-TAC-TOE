@@ -3,10 +3,12 @@
 
 extern std::string game[3][3];
 extern bool firstoption;
+extern int exitnumber;
 
 // Backbone of program flow
 void menu();
 void optionsmenu();
+void customexitnumbermenu();
 void wait(std::string& anything);
 void cinfail();
 void drawboard();
