@@ -5,6 +5,8 @@ using namespace std;
 
 bool firstoption {false};
 int exitnumber {404};
+string playeronename {"PLAYER 1"};
+string playertwoname {"PLAYER 2"};
 void menu(){
     cout << "==================" << endl;
     cout << "   TIC TAC TOE    " << endl;
@@ -24,7 +26,8 @@ void optionsmenu(){
     cout << endl;
     cout << "1. Show slot numbers on board(default:disabled): " << firstoption << endl;
     cout << "2. Add Custom Exit Number: " << exitnumber << endl;
-    cout << "3. Exit" << endl;
+    cout << "3. Give custom name to PLAYER 1(X) and PLAYER 2(O)" << endl;
+    cout << "4. Go back" << endl;
     cout << endl;
     cout << "Input:" << endl;
 }
@@ -42,6 +45,39 @@ void customexitnumbermenu(){
     cout << endl;
     cout << "Custom Exit Code: " << exitnumber << endl;
     cout << "Input:" << endl;
+}
+
+string inputforchangename(){
+    cin.ignore();
+    string x;
+    cout << "Type a new name:" << endl;
+    getline(cin, x);
+    return x;
+}
+
+void changeplayersname(){
+    cout << "=============================" << endl;
+    cout << "   CHANGE A PLAYER'S NAME    " << endl;
+    cout << "=============================" << endl;
+    cout << endl;
+    cout << "1. Player 1(X) name: " << playeronename << endl;
+    cout << "2. Player 2(O) name: " << playertwoname << endl;
+    cout << "3. Set to default" << endl;
+    cout << "4. Go back" << endl;
+    cout << endl;
+    cout << "INPUT:" << endl;
+}
+
+void changenametodefault(){
+    cout << "===========================" << endl;
+    cout << "   SET NAMES TO DEFAULT    " << endl;
+    cout << "===========================" << endl;
+    cout << endl;
+    cout << "1. Set both names to default" << endl;
+    cout << "2. Set Player 1 name to default" << endl;
+    cout << "3. Set player 2 name to default" << endl;
+    cout << endl;
+    cout << "INPUT:" << endl;
 }
 
 void scoreboard(int round, int scoreofx, int scoreofo, int numberofdraws){
@@ -147,10 +183,10 @@ void putmarker(string& winner){
     while(!checkwinner(winner)){
         string anything {};
         if(player1turn){
-            cout << "Player 1 (X) type your slot number:" << endl;
-        }
+            cout << playeronename << " (X) type your slot number:" << endl;
+        } 
         else{
-            cout << "Player 2 (O) type your slot number:" << endl;
+            cout << playertwoname << " (O) type your slot number:" << endl;
         }
         int slot {};
         cin >> slot;
