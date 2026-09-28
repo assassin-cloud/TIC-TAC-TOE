@@ -194,18 +194,64 @@ bool isdraw(){
     return true;
 }
 
-void putmarker(string& winner){
+void chooseslot(bool player1turn, int& slot){
+    if(player1turn){
+        cout << playeronename << " (X) type your slot number:" << endl;
+    } 
+    else{
+        cout << playertwoname << " (O) type your slot number:" << endl;
+    }
+    slot = takeinputfromuser();
+}
+
+bool putmarkerandcheckslot(bool player1turn, int slot){
+    slot--;
+    int row { slot/3 };
+    int column { slot%3 };
+    if(game[row][column]=="X" || game[row][column]=="O"){
+        cout << "Slot Occupied!" << endl;
+        return false;
+    }
+    else{
+        if(player1turn){
+            game[row][column] = "X";
+        }
+        else{
+            game[row][column] = "O";
+        }
+    }
+    return true;
+}
+
+int updatescore(string winner){
+    if(checkwinner(winner)){
+        if(winner == "X"){
+            scoreofx++;
+            round++;
+            return 1;
+        }
+        else{
+            scoreofo++;
+            round++;
+            return 1;
+        }
+    }
+    else{
+        if(isdraw()){
+            numberofdraws++;
+            round++;
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void gameflow(string winner){
     bool player1turn {true};
     while(!checkwinner(winner)){
-        string anything {};
-        if(player1turn){
-            cout << playeronename << " (X) type your slot number:" << endl;
-        } 
-        else{
-            cout << playertwoname << " (O) type your slot number:" << endl;
-        }
         int slot {};
-        cin >> slot;
+        string anything {};
+        chooseslot(player1turn, slot);
         if(cin.fail()){
             cinfail();
         }
@@ -217,30 +263,9 @@ void putmarker(string& winner){
                 break;
             }
             else{
-                slot--;
-                int row { slot/3 };
-                int column { slot%3 };
-                if(game[row][column]=="X" || game[row][column]=="O"){
-                    cout << "Slot Occupied!" << endl;
-                }
-                else{
-                    if(player1turn){
-                        game[row][column] = "X";
-                    }
-                    else{
-                        game[row][column] = "O";
-                    }
+                if(putmarkerandcheckslot(player1turn, slot)){
                     drawboard();
-                    if(checkwinner(winner)){
-                        drawboard();
-                        cout << winner << " WON!!!!!" << endl;
-                        if(winner == "X"){
-                            scoreofx++;
-                        }
-                        else{
-                            scoreofo++;
-                        }
-                        round++;
+                    if(updatescore(winner) == 1){
                         scoreboard(round, scoreofx, scoreofo, numberofdraws);
                         wait(anything);
                         if(anything == "q"){
@@ -251,24 +276,11 @@ void putmarker(string& winner){
                             continue;
                         }
                     }
-                    else{
-                        if(isdraw()){
-                            cout << "It's a draw!" << endl;
-                            numberofdraws++;
-                            round++;
-                            scoreboard(round, scoreofx, scoreofo, numberofdraws);
-                            wait(anything);
-                            if(anything == "q"){
-                                break;
-                            }
-                            else{
-                                resetboard();
-                                continue;
-                            }
-                        }
-                    }
-                    player1turn = !player1turn;
                 }
+                else{
+                    continue;
+                }
+                player1turn = !player1turn;
             }
         }
     }
