@@ -246,9 +246,9 @@ int updatescore(string winner){
     return 0;
 }
 
-void gameflow(string winner){
+void gameflow(string& winner){
     bool player1turn {true};
-    while(!checkwinner(winner)){
+    while(true){
         int slot {};
         string anything {};
         chooseslot(player1turn, slot);
@@ -277,7 +277,7 @@ void gameflow(string winner){
                         }
                     }
                 }
-                else{
+                else if(!(putmarkerandcheckslot(player1turn, slot))){
                     continue;
                 }
                 player1turn = !player1turn;
