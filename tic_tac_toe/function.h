@@ -3,6 +3,7 @@
 
 extern std::string game[3][3];
 extern bool firstoption;
+extern bool fourthoption;
 extern int exitnumber;
 extern std::string playeronename;
 extern std::string playertwoname;
