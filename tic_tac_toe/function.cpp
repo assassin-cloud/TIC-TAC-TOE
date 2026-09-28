@@ -35,7 +35,8 @@ void optionsmenu(){
     cout << "2. Add Custom Exit Number: " << exitnumber << endl;
     cout << "3. Give custom name to PLAYER 1(X) and PLAYER 2(O)" << endl;
     cout << "4. Reset scores after going to main menu(default: Disabled): " << fourthoption << endl;
-    cout << "5. Go back" << endl;
+    cout << "5. Reset all options to default" << endl;
+    cout << "6. Go back" << endl;
     cout << endl;
     cout << "Input:" << endl;
 }
