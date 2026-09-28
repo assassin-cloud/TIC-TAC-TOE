@@ -1,8 +1,8 @@
 🎮 Tic-Tac-Toe
 
-A console-based Tic-Tac-Toe game written in C++, built as a hands-on programming exercise to practice functions, arrays, loops, input validation, references, global state, game logic, and basic project organization.
+A console-based Tic-Tac-Toe game written in C++, created as a hands-on programming project to practice functions, arrays, loops, input validation, references, global state, game logic, and multi-file project organization.
 
-The game supports two local players, customizable player names, configurable settings, win/draw detection, an optional numbered board, a customizable exit code, and a session scoreboard.
+The game supports two local players, customizable player names, configurable gameplay options, win/draw detection, an optional numbered board, a customizable exit code, and a session scoreboard.
 
 ✨ Features
 
@@ -30,7 +30,7 @@ The game supports two local players, customizable player names, configurable set
 
 👤 Custom names for both players
 
-🔄 Reset player names to their defaults
+🔄 Reset player names to defaults
 
 📊 Session scoreboard
 
@@ -40,13 +40,15 @@ The game supports two local players, customizable player names, configurable set
 
 🧩 Separate .cpp and .h files
 
+🛠️ Standard C++ library only
+
 🛠️ Built With
 
 C++
 
-Standard C++ library
+Standard C++ Library
 
-Console/terminal interface
+Console / terminal interface
 
 No external libraries or game engines are required.
 
@@ -71,7 +73,7 @@ Select 1 to start a game.
 
 Board Layout
 
-The board contains nine positions:
+The board uses nine positions:
 
 1 | 2 | 3
 ---------
@@ -80,7 +82,7 @@ The board contains nine positions:
 7 | 8 | 9
 
 
-For example, entering:
+For example:
 
 PLAYER 1 (X) type your slot number:
 5
@@ -88,7 +90,13 @@ PLAYER 1 (X) type your slot number:
 
 places X in the center of the board.
 
-Players continue taking turns until somebody wins, the board becomes full, or the configured exit code is entered.
+Players continue taking turns until:
+
+A player wins
+
+The board is full
+
+The configured exit code is entered
 
 🏆 Winning the Game
 
@@ -126,12 +134,12 @@ The draw counter is then increased.
 
 Players cannot overwrite an existing X or O.
 
-If an occupied position is selected, the program displays:
+If an occupied position is selected:
 
 Slot Occupied!
 
 
-The current player can then enter another position.
+The current player can then choose another position.
 
 ⚙️ Options
 
@@ -153,16 +161,19 @@ Note: (0) means Disabled and (1) means Enabled
 
 Controls whether empty board positions display their corresponding slot numbers.
 
-The option is disabled by default.
+Disabled by default.
 
-Disabled
+Disabled:
+
 | | | |
 -------
 | | | |
 -------
 | | | |
 
-Enabled
+
+Enabled:
+
 |1|2|3|
 -------
 |4|5|6|
@@ -170,7 +181,7 @@ Enabled
 |7|8|9|
 
 
-After a move, the selected position is replaced by X or O.
+After a move, the selected position is replaced with X or O.
 
 2. Custom Exit Code
 
@@ -181,17 +192,13 @@ The default exit code is:
 
 During an active round, entering the configured exit code leaves the current round.
 
-Custom exit codes must be greater than 9.
+Custom exit codes must be greater than 9, preventing normal board positions (1–9) from being used as exit codes.
 
-The exit-code menu also provides:
+The exit-code menu provides:
 
-0 — Return to the Options menu
-
-1 — Reset the exit code to 404
-
-Any number greater than 9 — Set a new exit code
-
-The program does not allow normal board positions (1–9) to be used as exit codes.
+0 → Return to Options
+1 → Reset exit code to 404
+10+ → Set a custom exit code
 
 3. Custom Player Names
 
@@ -203,17 +210,17 @@ PLAYER 1
 PLAYER 2
 
 
-The menu provides options to:
+The menu allows you to:
 
 Change Player 1's name
 
 Change Player 2's name
 
-Reset names
+Reset either or both names
 
-Return to the previous menu
+Return to the Options menu
 
-For example:
+Example:
 
 Alice (X) type your slot number:
 
@@ -222,25 +229,25 @@ Empty names are rejected.
 
 4. Reset Scores
 
-The Reset scores after going to main menu option controls whether the scoreboard is cleared after returning from a game session.
+The Reset scores after going to main menu option controls whether the scoreboard is cleared after leaving a game session.
 
-This setting is disabled by default.
+This option is disabled by default.
 
-The scoreboard can also be reset directly from the Scoreboard menu.
+Scores can also be reset manually from the Scoreboard menu.
 
 5. Reset All Options
 
 The Reset all options to default option restores:
 
-Show slot numbers: Disabled
-Exit code:          404
-Player 1 name:      PLAYER 1
-Player 2 name:      PLAYER 2
-Reset scores:       Disabled
-
+Setting	Default
+Show slot numbers	Disabled
+Exit code	404
+Player 1 name	PLAYER 1
+Player 2 name	PLAYER 2
+Reset scores	Disabled
 📊 Scoreboard
 
-The program maintains scoreboard information during the current application session.
+The game maintains scoreboard information during the current application session.
 
 The scoreboard tracks:
 
@@ -263,11 +270,9 @@ Example:
 | DRAWS: 0        |
 
 
-The scoreboard can be viewed from the main menu.
+The Scoreboard menu also provides an option to reset all scores and round statistics.
 
-It also provides an option to reset all scores and round statistics.
-
-🔄 Playing Multiple Rounds
+🔄 Multiple Rounds
 
 After a player wins or a draw occurs, the program asks:
 
@@ -294,7 +299,7 @@ The default value is:
 404
 
 
-For example:
+Example:
 
 PLAYER 1 (X) type your slot number:
 404
@@ -310,7 +315,8 @@ assassin-cloud-tic-tac-toe/
 └── tic_tac_toe/
     ├── main.cpp
     ├── function.cpp
-    └── function.h
+    ├── function.h
+    └── simplefunctions.cpp
 
 main.cpp
 
@@ -334,13 +340,9 @@ Exiting the application
 
 function.cpp
 
-Contains the implementation of the game's functions and shared game state.
+Contains the core game logic and shared game state.
 
 Responsibilities include:
-
-Menu display
-
-Board rendering
 
 Board resetting
 
@@ -354,19 +356,41 @@ Draw detection
 
 Marker placement
 
-Player-name management
+Turn management
 
-Exit-code management
+Score updates
+
+Round management
+
+Replay handling
+
+simplefunctions.cpp
+
+Contains simpler UI and utility functions.
+
+Responsibilities include:
+
+Menu display
+
+Options menu
 
 Scoreboard display
 
+Board rendering
+
+Input handling
+
 Invalid-input handling
+
+Player-name input
+
+Player-name menus
 
 function.h
 
 Contains function declarations and extern declarations for shared global variables.
 
-It provides the interface between main.cpp and function.cpp.
+It provides the interface between the implementation files.
 
 🧠 Concepts Practiced
 
@@ -424,9 +448,11 @@ Reusable functions
 
 Separating declarations from implementations
 
-Configuration/state management
+Configuration management
 
-🐛 Input Validation
+Shared application state
+
+🛡️ Input Validation
 
 The program handles several invalid-input situations, including:
 
@@ -442,7 +468,7 @@ Invalid custom exit codes
 
 Empty player names
 
-When std::cin enters a failed state, the program uses cinfail() to clear the error state and discard invalid input.
+When std::cin enters a failed state, cinfail() clears the error state and discards the invalid input.
 
 ⚠️ Current Limitations
 
@@ -464,11 +490,11 @@ scoreofo
 numberofdraws
 
 
-This works for the current project, but a future version could encapsulate this state inside dedicated classes or structures.
+This works for the current project, but a future version could encapsulate the state inside dedicated classes or structures.
 
 Large Game Function
 
-putmarker() currently handles many responsibilities:
+gameflow() currently handles several responsibilities, including:
 
 Turn management
 
@@ -492,19 +518,25 @@ Breaking these responsibilities into smaller functions would make the code easie
 
 Input Handling
 
-Input validation is implemented throughout the program, but the handling could be made more consistent by centralizing numeric input and menu validation.
+Input validation is implemented throughout the program, but numeric input and menu validation could be centralized into reusable functions.
 
-Scoreboard Scope
+Session-Only Scoreboard
 
-The scoreboard is maintained through global variables during the running application.
+The scoreboard exists only while the program is running.
 
-This means the statistics are not saved after the executable closes.
+Closing the application resets:
 
-No Persistent Storage
+Scores
 
-Scores, names, and settings are stored only in memory.
+Round count
 
-Closing the program resets the application state.
+Draw count
+
+Player names
+
+Options
+
+No persistent storage is currently implemented.
 
 🚧 Current Status
 
@@ -534,11 +566,11 @@ Configuration reset options
 
 Basic input validation
 
-The project is still suitable for further refactoring and experimentation.
+The project is still suitable for further refactoring, experimentation, and feature development.
 
 🔮 Possible Future Improvements
 
-Some potential improvements for future versions include:
+Potential improvements include:
 
 🧹 Cleaner terminal UI
 
@@ -558,7 +590,7 @@ Some potential improvements for future versions include:
 
 🔁 Improved replay/rematch system
 
-📈 Player statistics
+📈 Additional player statistics
 
 ✍️ Improved player-name validation
 
@@ -570,11 +602,11 @@ Some potential improvements for future versions include:
 
 🗂️ Improved project organization
 
-These are planned or possible improvements rather than currently implemented features.
+These are possible future improvements and are not currently implemented.
 
 📚 Why I Built This
 
-This project was created as a practical way to learn C++ by building an interactive program rather than only studying individual language features.
+This project was created as a practical way to learn C++ by building an interactive program instead of only studying individual language features.
 
 Although Tic-Tac-Toe has simple rules, implementing it requires several pieces of logic to work together:
 
@@ -595,7 +627,7 @@ Switch player
 Repeat
 
 
-The project provided practice with managing these interacting states while also introducing a basic multi-file C++ project structure.
+The project provided practice with managing interacting states while also introducing a basic multi-file C++ project structure.
 
 📈 Project Progress
 
@@ -646,12 +678,15 @@ Compile
 
 From the tic_tac_toe directory:
 
-g++ main.cpp function.cpp -o tic_tac_toe
+g++ main.cpp function.cpp simplefunctions.cpp -o tic_tac_toe
 
 
 Or from the project root:
 
-g++ tic_tac_toe/main.cpp tic_tac_toe/function.cpp -o tic_tac_toe
+g++ tic_tac_toe/main.cpp tic_tac_toe/function.cpp tic_tac_toe/simplefunctions.cpp -o tic_tac_toe
+
+
+Note: simplefunctions.cpp must also be compiled because it contains functions declared in function.h.
 
 Run
 Linux / macOS
@@ -659,6 +694,26 @@ Linux / macOS
 
 Windows
 tic_tac_toe.exe
+
+🐛 Known Development Issues
+
+This project is primarily a learning exercise, so the codebase still contains areas that can be improved.
+
+For example:
+
+Some functions perform multiple responsibilities.
+
+Global variables are used for shared state.
+
+Input handling could be centralized.
+
+Game logic could be separated from UI logic.
+
+The project does not currently have automated tests.
+
+Game statistics are not persisted between executions.
+
+These limitations are intentional opportunities for future refactoring and learning.
 
 📜 License
 
@@ -670,8 +725,7 @@ If you use or modify the code, attribution is appreciated.
 
 assassin-cloud
 
-GitHub:
-https://github.com/assassin-cloud
+GitHub: https://github.com/assassin-cloud
 
 ⭐ If you find the project interesting, consider starring the repository.
 
