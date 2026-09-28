@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+// function.cpp
 extern std::string game[3][3];
 extern bool firstoption;
 extern bool fourthoption;
@@ -12,7 +13,7 @@ extern int scoreofx;
 extern int scoreofo;
 extern int numberofdraws;
 
-// Backbone of program flow
+// simplefunctions.cpp
 void menu();
 void optionsmenu();
 void customexitnumbermenu();
@@ -21,12 +22,15 @@ void changeplayersname();
 void changenametodefault();
 void wait(std::string& anything);
 void cinfail();
-void displayscore();
+int takeinputfromuser();
+void displayscore(); 
 void drawboard();
+void scoreboard(int round, int scoreofx, int scoreofo, int numberofdraws);
+
+// function.cpp
 bool isdraw();
 void resetboard();
-
-// Essential functions
-int takeinputfromuser();
 bool checkwinner(std::string& winner);
-void gameflow(std::string winner);
+void gameflow(std::string& winner);
+bool isdraw();
+void resetboard();
