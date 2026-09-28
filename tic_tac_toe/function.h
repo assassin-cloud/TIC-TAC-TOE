@@ -29,4 +29,4 @@ void resetboard();
 // Essential functions
 int takeinputfromuser();
 bool checkwinner(std::string& winner);
-void putmarker(std::string& winner);
+void gameflow(std::string winner);
