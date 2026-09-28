@@ -4,6 +4,7 @@
 using namespace std;
 
 bool firstoption {false};
+bool fourthoption {false};
 int exitnumber {404};
 string playeronename {"PLAYER 1"};
 string playertwoname {"PLAYER 2"};
@@ -33,7 +34,8 @@ void optionsmenu(){
     cout << "1. Show slot numbers on board(default:disabled): " << firstoption << endl;
     cout << "2. Add Custom Exit Number: " << exitnumber << endl;
     cout << "3. Give custom name to PLAYER 1(X) and PLAYER 2(O)" << endl;
-    cout << "4. Go back" << endl;
+    cout << "4. Reset scores after going to main menu(default: Disabled): " << fourthoption << endl;
+    cout << "5. Go back" << endl;
     cout << endl;
     cout << "Input:" << endl;
 }
