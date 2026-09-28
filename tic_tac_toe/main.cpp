@@ -15,7 +15,7 @@ int main(){
         else{
             if(userinput == 1){
                 drawboard();
-                putmarker(winner);
+                gameflow(winner);
                 resetboard();
                 winner = " ";
                 if(fourthoption){
