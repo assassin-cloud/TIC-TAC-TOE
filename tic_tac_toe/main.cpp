@@ -144,6 +144,13 @@ int main(){
                             fourthoption = false;
                         }
                         else if(optioninput == 5){
+                            firstoption = false;
+                            fourthoption = false;
+                            exitnumber = 404;
+                            playeronename = "PLAYER 1";
+                            playertwoname = "PLAYER 2";
+                        }
+                        else if(optioninput == 6){
                             break;
                         }
                         else{
