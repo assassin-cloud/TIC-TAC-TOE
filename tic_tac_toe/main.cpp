@@ -18,6 +18,12 @@ int main(){
                 putmarker(winner);
                 resetboard();
                 winner = " ";
+                if(fourthoption){
+                    round = 0;
+                    numberofdraws = 0;
+                    scoreofo = 0;
+                    scoreofx = 0;
+                }
             }
             else if(userinput == 2){
                 while(true){
@@ -131,7 +137,13 @@ int main(){
                                 }
                             }
                         }
-                        else if(optioninput == 4){
+                        else if(optioninput == 4 && fourthoption == false){
+                            fourthoption = true;
+                        }
+                        else if(optioninput == 4 && fourthoption == true){
+                            fourthoption = false;
+                        }
+                        else if(optioninput == 5){
                             break;
                         }
                         else{
